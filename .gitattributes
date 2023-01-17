@@ -1,4 +1,4 @@
-src/tables.rs linguist-generated
+src/tables.c linguist-generated
 tests/fst/xid_continue.fst linguist-generated
 tests/fst/xid_start.fst linguist-generated
 tests/tables/tables.rs linguist-generated
