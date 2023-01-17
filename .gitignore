@@ -2,3 +2,17 @@
 /Cargo.lock
 /UCD
 /UCD.zip
+
+/generate/target
+/generate/Cargo.lock
+
+# clang
+/.cache
+
+
+# Added by cargo
+#
+# already existing elements were commented out
+
+#/target
+#/Cargo.lock

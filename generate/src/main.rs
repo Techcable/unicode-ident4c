@@ -31,7 +31,7 @@ use std::process;
 
 const CHUNK: usize = 64;
 const UCD: &str = "UCD";
-const TABLES: &str = "src/tables.rs";
+const TABLES: &str = "src/tables.c";
 
 fn main() {
     let manifest_dir = Path::new(env!("CARGO_MANIFEST_DIR"));

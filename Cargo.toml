@@ -1,15 +1,17 @@
 [package]
-name = "unicode-ident"
-version = "1.0.6"
-authors = ["David Tolnay <dtolnay@gmail.com>"]
-categories = ["development-tools::procedural-macro-helpers", "no-std"]
-description = "Determine whether characters have the XID_Start or XID_Continue properties according to Unicode Standard Annex #31"
-documentation = "https://docs.rs/unicode-ident"
+name = "unicode-ident4c-ffi"
+version = "0.1.0"
+description = "FFI bindings to ident4c (intended for testing)"
 edition = "2018"
-keywords = ["unicode", "xid"]
 license = "(MIT OR Apache-2.0) AND Unicode-DFS-2016"
-repository = "https://github.com/dtolnay/unicode-ident"
+repository = "https://github.com/Techcable/unicode-ident4c"
 rust-version = "1.31"
+build = "ffi/build.rs"
+# Intended for internal testing
+publish = false
+
+[lib]
+path = "ffi/lib.rs"
 
 [dev-dependencies]
 criterion = { version = "0.4", default-features = false }
@@ -19,15 +21,16 @@ roaring = "0.10"
 ucd-trie = { version = "0.1", default-features = false }
 unicode-xid = "0.2.4"
 
+[build-dependencies]
+bindgen = "0.63"
+
 [[bench]]
 name = "xid"
 harness = false
 
 [workspace]
-members = ["diagram", "generate"]
-
-[lib]
-doc-scrape-examples = false
+# members = ["diagram", "generate"]
+members = ["generate"]
 
 [package.metadata.docs.rs]
 targets = ["x86_64-unknown-linux-gnu"]

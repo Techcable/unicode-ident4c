@@ -1,18 +1,19 @@
 #![allow(clippy::unreadable_literal)]
 
+use std::alloc::Layout;
 use std::mem::size_of_val;
 
 #[test]
 fn test_size() {
-    #[allow(dead_code)]
-    #[path = "../src/tables.rs"]
-    mod tables;
-
-    let size = size_of_val(&tables::ASCII_START)
-        + size_of_val(&tables::ASCII_CONTINUE)
-        + size_of_val(&tables::TRIE_START)
-        + size_of_val(&tables::TRIE_CONTINUE)
-        + size_of_val(&tables::LEAF);
+    fn size_of_val_aln<T: ?Sized>(val: &T, align: usize) -> usize {
+        Layout::for_value(val).align_to(align).unwrap().pad_to_align().size()
+    }
+    use unicode_ident4c_ffi::raw;
+    let size = unsafe { size_of_val_aln(&raw::_IDENT4C_ASCII_START, 64)
+        + size_of_val_aln(&raw::_IDENT4C_ASCII_CONTINUE, 64)
+        + size_of_val_aln(&raw::_IDENT4C_TRIE_START, 8)
+        + size_of_val_aln(&raw::_IDENT4C_TRIE_CONTINUE, 8)
+        + size_of_val_aln(&raw::_IDENT4C_LEAF, 64) };
     assert_eq!(10016, size);
 }
 

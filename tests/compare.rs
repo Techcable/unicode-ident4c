@@ -10,8 +10,8 @@ fn compare_all_implementations() {
     let xid_continue_roaring = roaring::xid_continue_bitmap();
 
     for ch in '\0'..=char::MAX {
-        let thought_to_be_start = unicode_ident::is_xid_start(ch);
-        let thought_to_be_continue = unicode_ident::is_xid_continue(ch);
+        let thought_to_be_start = unicode_ident4c_ffi::is_xid_start(ch);
+        let thought_to_be_continue = unicode_ident4c_ffi::is_xid_continue(ch);
 
         // unicode-xid
         assert_eq!(
